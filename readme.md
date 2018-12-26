@@ -69,7 +69,7 @@ I also didn't want the default 'api/' path on all my routes, so I fixed my `host
 }
 ```
 
-Without this configuration, the only paths your WSGI app would ever see would start with "api/<FunctionName>/".
+Without this configuration, the only paths your WSGI app would ever see would start with "api/\<FunctionName\>/".
 That works, but it would require you to repeat those boilerplate prefixes on every route you configured.
 
 Finally, setup your Function's `__init__.py` to delegate to the WSGI adapter:
