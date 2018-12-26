@@ -1,10 +1,14 @@
 import setuptools
 
+with open("README.md", "r") as fh:
+    long_description = fh.read()
+
 setuptools.setup(
     name='azf-wsgi',
     version='0.1',
     description='Azure Functions WSGI implementation',
-    long_description='Adapts the Azure Functions API to speak WSGI. Projects in Django, Flask, and other web frameworks simply drop right in to Azure Functions.',
+    long_description=long_description,
+    long_description_content_type="text/markdown",
     author='Matt Cooper',
     author_email='vtbassmatt@gmail.com',
     url='https://github.com/vtbassmatt/azf-wsgi',
