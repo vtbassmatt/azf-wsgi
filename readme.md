@@ -24,7 +24,7 @@ I created a Function called "DjangoTrigger", but you can call yours whatever.
 ### Install your WSGI app
 I found it's easiest if you package your WSGI app using a setup.py script, then `pip install` it.
 If you don't want to do that, you'll have to make sure your WSGI entrypoint is importable from the module where you define your Azure Function.
-I'm no Python imports expert, so I set my `PYTHONPATH` to include the root directory of a Django app.
+I'm no Python imports expert, so I just added `sys.path.insert(0, './my_proj')` right before I try to import the package.
 
 ### Install this package
 `pip install azf_wsgi` - no need to put this in Django's `INSTALLED_APPS` or anything like that.
@@ -72,7 +72,7 @@ I also didn't want the default 'api/' path on all my routes, so I fixed my `host
 
 Without this configuration, the only paths your WSGI app would ever see would start with "api/\<FunctionName\>/".
 That works, but it would require you to repeat those boilerplate prefixes on every route you configured.
-**However**, you don't want to completely take over all routes (by having an empty `routePrefix` _and_ a catch-all route in your function) because this disables import Azure machinery.
+**However**, you don't want to completely take over all routes (by having an empty `routePrefix` _and_ a catch-all route in your function) because this disables important Azure machinery.
 
 Finally, setup your Function's `__init__.py` to delegate to the WSGI adapter:
 
