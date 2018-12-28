@@ -1,4 +1,4 @@
-# azf_wsgi - WSGI apps on Azure Functions
+# azf-wsgi - WSGI apps on Azure Functions
 
 An adapter package to let you run WSGI apps (Django, Flask, etc.) on Azure Functions.
 
@@ -6,6 +6,7 @@ Example:
 ```python
 import azure.functions as func
 
+# note that the package is "azf-wsgi" but the import is "azf_wsgi"
 from azf_wsgi import AzureFunctionsWsgi
 # Django, for example, but works with any WSGI app
 from my_django_app.wsgi import application
@@ -27,7 +28,7 @@ If you don't want to do that, you'll have to make sure your WSGI entrypoint is i
 I'm no Python imports expert, so I just added `sys.path.insert(0, './my_proj')` right before I try to import the package.
 
 ### Install this package
-`pip install azf_wsgi` - no need to put this in Django's `INSTALLED_APPS` or anything like that.
+`pip install azf-wsgi` - no need to put this in Django's `INSTALLED_APPS` or anything like that.
 Be sure to update `requirements.txt` to include `azf-wsgi` as a requirement.
 
 ### Configure Azure Functions to hand off to your WSGI app
