@@ -28,6 +28,7 @@ I'm no Python imports expert, so I set my `PYTHONPATH` to include the root direc
 
 ### Install this package
 `pip install azf_wsgi` - no need to put this in Django's `INSTALLED_APPS` or anything like that.
+Be sure to update `requirements.txt` to include `azf-wsgi` as a requirement.
 
 ### Configure Azure Functions to hand off to your WSGI app
 First, we want to delegate routing to your WSGI app. Edit your `function.json` to include a catch-all route called "{*route}":
@@ -45,7 +46,7 @@ First, we want to delegate routing to your WSGI app. Edit your `function.json` t
         "get",
         "post"
       ],
-      "route": "{*route}"
+      "route": "app/{*route}"
     },
     {
       "type": "http",
@@ -71,6 +72,7 @@ I also didn't want the default 'api/' path on all my routes, so I fixed my `host
 
 Without this configuration, the only paths your WSGI app would ever see would start with "api/\<FunctionName\>/".
 That works, but it would require you to repeat those boilerplate prefixes on every route you configured.
+**However**, you don't want to completely take over all routes (by having an empty `routePrefix` _and_ a catch-all route in your function) because this disables import Azure machinery.
 
 Finally, setup your Function's `__init__.py` to delegate to the WSGI adapter:
 
