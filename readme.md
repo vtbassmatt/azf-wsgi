@@ -84,11 +84,17 @@ from azf_wsgi import AzureFunctionsWsgi
 from my_django_app.wsgi import application
 
 
+def main(req: func.HttpRequest) -> func.HttpResponse:
+    return AzureFunctionsWsgi(application).main(req)
+```
+
+The adapter optionally takes the `Context` object as well:
+
+```python
 def main(req: func.HttpRequest, context: func.Context) -> func.HttpResponse:
     return AzureFunctionsWsgi(application).main(req, context)
 ```
 
-The adapter requires the `Context` object, so please make sure to pass that along.
 
 The adapter will stuff in the OS's environment block much like a CGI request. If for some reason you don't want that, you can pass `False` to `include_os_environ`:
 

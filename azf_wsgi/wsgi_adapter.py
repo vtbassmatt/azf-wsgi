@@ -22,7 +22,7 @@ class AzureFunctionsWsgi:
         self._errors = StringIO()
         self._environ = []
 
-    def main(self, req: func.HttpRequest, context: func.Context) -> func.HttpResponse:
+    def main(self, req: func.HttpRequest, context: func.Context = None) -> func.HttpResponse:
         self._req = req
         self._context = context
 
@@ -81,10 +81,14 @@ class AzureFunctionsWsgi:
             'wsgi.multiprocess': False,
             'wsgi.run_once': False,
             'azure_functions.url': self._req.url,
-            'azure_functions.function_directory': self._context.function_directory,
-            'azure_functions.function_name': self._context.function_name,
-            'azure_functions.invocation_id': self._context.invocation_id,
         }
+
+        if self._context:
+            environ.update({
+                'azure_functions.function_directory': self._context.function_directory,
+                'azure_functions.function_name': self._context.function_name,
+                'azure_functions.invocation_id': self._context.invocation_id,
+            })
 
         if req_url.query:
             environ['QUERY_STRING'] = req_url.query
