@@ -104,6 +104,10 @@ class AzureFunctionsWsgi:
         if self._include_os_environ:
             environ.update(read_environ())
 
+        # Workaround Content-Length bug when 'application/json'
+        if environ.get('CONTENT_TYPE') == 'application/json':
+            environ['CONTENT_LENGTH'] = str(len(self._body))
+
         self._environ = environ
 
     def _header_name(self, header_name):
