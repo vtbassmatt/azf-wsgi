@@ -25,7 +25,7 @@ SECRET_KEY = 'insecure' # FIXME
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['azf-wsgi-helloworld.azurewebsites.net'] # FIXME
+ALLOWED_HOSTS = ['azf-wsgi-helloworld.azurewebsites.net', 'localhost'] # FIXME
 
 
 # Application definition
