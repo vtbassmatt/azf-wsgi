@@ -1,4 +1,4 @@
-from io import StringIO
+from io import StringIO, BytesIO
 import logging
 from urllib.parse import urlparse
 from wsgiref.headers import Headers
@@ -75,7 +75,7 @@ class AzureFunctionsWsgi:
             'SERVER_SOFTWARE': 'azure-functions',
             'wsgi.version': (1,0),
             'wsgi.url_scheme': req_url.scheme,
-            'wsgi.input': StringIO(self._body),
+            'wsgi.input': BytesIO(self._body),
             'wsgi.errors': self._errors,
             'wsgi.multithread': True,
             'wsgi.multiprocess': False,
