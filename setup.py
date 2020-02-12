@@ -5,8 +5,8 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name='azf-wsgi',
-    version='0.3.0',
-    description='Azure Functions WSGI implementation',
+    version='0.3.1',
+    description='Azure Functions WSGI implementation [deprecated]',
     long_description=long_description,
     long_description_content_type="text/markdown",
     author='Matt Cooper',
@@ -15,7 +15,7 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     install_requires=['azure-functions'],
     classifiers=[
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 7 - Inactive',
         'Environment :: Web Environment',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
