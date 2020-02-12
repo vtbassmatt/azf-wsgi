@@ -1,6 +1,11 @@
 # azf-wsgi - WSGI apps on Azure Functions
 
-An adapter package to let you run WSGI apps (Django, Flask, etc.) on Azure Functions.
+**DEPRECATION NOTICE**: The Azure Functions team has built [first-class support for WSGI](https://github.com/Azure/azure-functions-python-library/pull/45) on Azure Functions.
+I recommend you switch to their implementation.
+
+---
+
+This was an adapter package to let you run WSGI apps (Django, Flask, etc.) on Azure Functions.
 
 Example:
 ```python
